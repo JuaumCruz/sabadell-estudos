@@ -1,0 +1,5 @@
+INSERT INTO user_query.users (id_user, first_name, last_name, email, birth_date, credit_limit, create_date, update_date) VALUES (1, 'Jamie', 'Olson', 'jamie.olson@example.com', '1994-07-05', 1000, now(), now());
+INSERT INTO user_query.users (id_user, first_name, last_name, email, birth_date, credit_limit, create_date, update_date) VALUES (2, 'Rose', 'Howell', 'rose.howell@example.com', '1949-07-12', 5000, now(), now());
+INSERT INTO user_query.users (id_user, first_name, last_name, email, birth_date, credit_limit, create_date, update_date) VALUES (3, 'Brian', 'Barnett', 'brian.barnett@example.com', '1960-06-07', 3000, now(), now());
+INSERT INTO user_query.users (id_user, first_name, last_name, email, birth_date, credit_limit, create_date, update_date) VALUES (4, 'Larry', 'Flemming', 'larry.flemming@example.com', '1988-01-02', 2000, now(), now());
+INSERT INTO user_query.users (id_user, first_name, last_name, email, birth_date, credit_limit, create_date, update_date) VALUES (5, 'Gavin', 'Davidson', 'gavin.davidson@example.com', '1996-04-05', 5000, now(), now());

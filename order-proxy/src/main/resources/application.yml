@@ -1,0 +1,23 @@
+server:
+  port: 0
+spring:
+  application:
+    name: order-proxy
+  cloud:
+    consul:
+      discovery:
+        instanceId: ${spring.application.name}:${random.value}
+    stream:
+      bindings:
+        output:
+          destination: order-process
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: sabadell
+    password: password
+management:
+  endpoint:
+    health.show-details: always
+  endpoints:
+    web.exposure.include: '*'

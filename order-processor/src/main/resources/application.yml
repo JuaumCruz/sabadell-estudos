@@ -1,0 +1,36 @@
+server:
+  port: 0
+feign:
+  hystrix:
+    enabled: true
+spring:
+  application:
+    name: order-processor
+  cloud:
+    consul:
+      discovery:
+        instanceId: ${spring.application.name}:${random.value}
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:29092,localhost:29093
+          minPartitionCount: 2
+          replicationFactor: 2
+      bindings:
+        input:
+          destination: order-process
+          group: ${spring.application.name}
+          binder: rabbit
+        output:
+          destination: order-update
+          binder: kafka
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: sabadell
+    password: password
+management:
+  endpoint:
+    health.show-details: always
+  endpoints:
+    web.exposure.include: '*'
