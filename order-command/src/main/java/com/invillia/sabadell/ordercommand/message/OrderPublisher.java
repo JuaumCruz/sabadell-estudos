@@ -9,13 +9,14 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.stereotype.Component;
 
 @Component
-@EnableBinding(Source.class)
+@EnableBinding(OrderSource.class)
 public class OrderPublisher {
 
     @Autowired
-    private MessageChannel output;
+    private OrderSource order;
 
     public void publishOrder(Order response) {
-        output.send(MessageBuilder.withPayload(response).build());
+        order.outputMerge().send(MessageBuilder.withPayload(response).build());
+        order.outputProcess().send(MessageBuilder.withPayload(response).build());
     }
 }

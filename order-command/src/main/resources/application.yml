@@ -14,13 +14,21 @@ spring:
           minPartitionCount: 2
           replicationFactor: 2
       bindings:
-        input:
+        input-update:
           destination: order-update
           group: ${spring.application.name}
           binder: kafka
-        output:
+        output-merge:
           destination: order-merge
           binder: kafka
+        output-process:
+          destination: order-process
+          binder: rabbit
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: sabadell
+    password: paracuru
   datasource:
     hikari:
       connectionTimeout: 20000

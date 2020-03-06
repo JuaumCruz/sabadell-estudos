@@ -2,20 +2,20 @@ package com.invillia.sabadell.ordercommand.service;
 
 import com.invillia.sabadell.ordercommand.exception.OrderNotFoundException;
 import com.invillia.sabadell.ordercommand.message.OrderPublisher;
+import com.invillia.sabadell.ordercommand.message.OrderSource;
 import com.invillia.sabadell.ordercommand.model.Order;
 import com.invillia.sabadell.ordercommand.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Service;
 
-import static org.springframework.cloud.stream.messaging.Sink.INPUT;
-import static org.springframework.cloud.stream.messaging.Source.OUTPUT;
+import static com.invillia.sabadell.ordercommand.message.OrderSource.OrderQueue.INPUT_UPDATE;
+import static com.invillia.sabadell.ordercommand.message.OrderSource.OrderQueue.OUTPUT_MERGE;
 
 @Service
-@EnableBinding(Processor.class)
+@EnableBinding(OrderSource.class)
 public class OrderService {
 
     @Autowired
@@ -31,8 +31,8 @@ public class OrderService {
         return response;
     }
 
-    @StreamListener(INPUT)
-    @SendTo(OUTPUT)
+    @StreamListener(INPUT_UPDATE)
+    @SendTo(OUTPUT_MERGE)
     public Order updateOrder(Order request) {
         return repository.findById(request.getIdOrder())
             .map(order -> {
