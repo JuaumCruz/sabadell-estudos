@@ -28,7 +28,7 @@ spring:
     host: localhost
     port: 5672
     username: sabadell
-    password: password
+    password: paracuru
 management:
   endpoint:
     health.show-details: always
